@@ -9,7 +9,14 @@ shinyServer(function(input, output, session) {
   
   # Create a new reactive variable
   newVar <- reactive({
-    math <- read.table("student-mat.csv",sep= ";", header= T)
+   temp <- tempfile()
+   download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip",
+               temp, mode="wb")
+unzip(temp, "student-mat.csv")
+math <- read.table("student-mat.csv",sep= ";", header= T)
+unlink(temp)
+(data <- as_tibble(data))
+    
     newDat <- math %>% filter(school == input$school)
   })
   
