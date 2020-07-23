@@ -2,14 +2,8 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 
-temp <- tempfile()
-download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip",
-              temp, mode="wb")
-unzip(temp, "student-mat.csv")
-math <- read.table("student-mat.csv",sep= ";", header= T)
-unlink(temp)
-(data <- as_tibble(data))
 
+math <- read.table("student-mat.csv",sep= ";", header= T)
 
 shinyServer(function(input, output, session) {
   
