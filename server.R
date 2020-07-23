@@ -3,12 +3,13 @@ library(dplyr)
 library(ggplot2)
 
 
-math <- read.table("student-mat.csv",sep= ";", header= T)
+# math <- read.table("student-mat.csv",sep= ";", header= T)
 
 shinyServer(function(input, output, session) {
   
   # Create a new reactive variable
   newVar <- reactive({
+    math <- read.table("student-mat.csv",sep= ";", header= T)
     newDat <- math %>% filter(school == input$school)
   })
   
