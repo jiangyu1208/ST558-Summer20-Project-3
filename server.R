@@ -3,7 +3,13 @@ library(dplyr)
 library(ggplot2)
 
 
-# math <- read.table("student-mat.csv",sep= ";", header= T)
+# Read the data
+temp <- tempfile()
+download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip",temp, mode="wb")
+unzip(temp, "student-mat.csv")
+math <- read.table("student-mat.csv",sep= ";", header= T)
+unlink(temp)
+(math <- as_tibble(math))
 
 shinyServer(function(input, output, session) {
   
