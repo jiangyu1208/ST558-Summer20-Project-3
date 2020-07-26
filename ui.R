@@ -2,6 +2,14 @@ library(shiny)
 library(shinydashboard)
 library(ggplot2)
 
+# Read the data
+temp <- tempfile()
+download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/student.zip",temp, mode="wb")
+unzip(temp, "student-mat.csv")
+math <- read.table("student-mat.csv",sep= ";", header= T)
+unlink(temp)
+(math <- as_tibble(math))
+
 ui <- dashboardPage(skin = "blue",
   # Add title                  
   dashboardHeader(title = "Student Performance Data Analysis", titleWidth = 350),
