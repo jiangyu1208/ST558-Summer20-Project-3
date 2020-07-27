@@ -19,7 +19,7 @@ download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/st
 unzip(temp, "student-mat.csv")
 mathdat <- read.table("student-mat.csv",sep= ";", header= T)
 unlink(temp)
-#(math <- as_tibble(math))
+
 
 # Fit MLR
 model <- lm(G3 ~ G1 + G2, data = mathdat )
@@ -273,4 +273,19 @@ shinyServer(function(input, output, session) {
     cbind(df3, df4)
   })
 
+###################################### Data Subset #########################################
+  # Dataset to be downloaded
+  final_dat <- reactive({
+    newDat.2 <- mathdat
+  })
+  
+  output$`Data Table` <- DT::renderDataTable({
+    DT::datatable(final_dat)
+  })
+  
+  output$downloadTable <- downloadHandler(
+    filename = function(){paste("Student Performance in Math.csv")},
+    content = function(file){write.csv(final_dat(), file, row.names = FALSE)}
+  )
+  
 })

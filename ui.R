@@ -19,7 +19,7 @@ download.file("http://archive.ics.uci.edu/ml/machine-learning-databases/00356/st
 unzip(temp, "student-mat.csv")
 mathdat <- read.table("student-mat.csv",sep= ";", header= T)
 unlink(temp)
-#(math <- as_tibble(math))
+
 
 # UI part
 ui <- dashboardPage(skin = "blue",
@@ -34,7 +34,7 @@ ui <- dashboardPage(skin = "blue",
                         menuItem(tabName = "unsuper", "Unsupervised Learning", icon = icon("th")),
                         menuItem(tabName = "mlr", "Multiple Linear Regression", icon = icon("tablet")),
                         menuItem(tabName = "tree", "Ensemble Model", icon = icon("tablet")),
-                        menuItem(tanName = "subset", "Data Page", icon = icon("th"))
+                        menuItem(tabName = "sub", "Data Page", icon = icon("th"))
                         )),
                     
                     # Define the body of the app
@@ -233,7 +233,11 @@ ui <- dashboardPage(skin = "blue",
                               )),
 
 ##################################### "Data Page" tab #####################################################
-                      tabItem(tabName = "subset")
+                      tabItem(tabName = "sub",
+                              mainPanel(
+                                DT::dataTableOutput("Data Table"),
+                                downloadButton("downloadTable", "Download the Dataset of the Record of Math Grade")
+                              ))
                       
                       
                     ),
