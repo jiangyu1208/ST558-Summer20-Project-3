@@ -11,6 +11,7 @@ library(gridExtra)
 library(lattice)
 library(e1071)
 library(randomForest)
+library(plotly)
 
 # Read the data
 temp <- tempfile()
@@ -35,16 +36,16 @@ shinyServer(function(input, output, session) {
 
 ##################################### Data Exploration ######################################################    
   # Create a new reactive variable
-  newVar <- reactive({
-    newDat <- mathdat %>% filter(school == input$school)
+  newVar1 <- reactive({
+    newDat1 <- mathdat %>% filter(school == input$school)
   })
   
   
   # Create a scatter plot
-  output$G12Plot <- renderPlot({
-    newDat <- newVar()
+  output$tab2_plot1 <- renderPlot({
+    newDat1 <- newVar1()
     
-    g <- ggplot(newDat, aes(x = G1, y = G2))
+    g <- ggplot(newDat1, aes(x = G1, y = G2))
     
     if(input$sex){
       g + geom_point(size = input$size, aes(col = sex))
@@ -54,19 +55,29 @@ shinyServer(function(input, output, session) {
   })
   
   # Create text info
-  output$info <- renderText({
-    newDat <- newVar()
+  output$tab2_text1 <- renderText({
+    newDat1 <- newVar1()
     
     paste("The average first period grade for math", input$school, "is", 
-          round(mean(newDat$G1, na.rm = TRUE), 2), 
+          round(mean(newDat1$G1, na.rm = TRUE), 2), 
           "and the average second period grade is", 
-          round(mean(newDat$G2, na.rm = TRUE), 2), sep = " ")
+          round(mean(newDat1$G2, na.rm = TRUE), 2), sep = " ")
   })
   
   # Create output of observations
-  output$table <- renderTable({
-    newVar()
+  output$tab2_table1 <- renderTable({
+    newVar1()
   })
+  
+  # Download the plot 
+  output$download_tab2_plot1 <- downloadHandler(
+    filename = "Scatter Plot between G1 and G2.png",
+    content = function(file){
+      png(file)
+      tab2_plot1()
+      dev.off()
+    }
+  )
   
 ########################################## PCA ###############################################
   math.new <- reactive({
@@ -274,18 +285,10 @@ shinyServer(function(input, output, session) {
   })
 
 ###################################### Data Subset #########################################
-  # Dataset to be downloaded
-  final_dat <- reactive({
-    newDat.2 <- mathdat
-  })
-  
-  output$`Data Table` <- DT::renderDataTable({
-    DT::datatable(final_dat)
-  })
   
   output$downloadTable <- downloadHandler(
     filename = function(){paste("Student Performance in Math.csv")},
-    content = function(file){write.csv(final_dat(), file, row.names = FALSE)}
+    content = function(file){write.csv(mathdat, file, row.names = FALSE)}
   )
   
 })

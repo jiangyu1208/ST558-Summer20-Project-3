@@ -78,7 +78,8 @@ ui <- dashboardPage(skin = "blue",
                                              h4("The control for this app is located on the left and the visualizations are given on the right. "),
                                              h4("In the 'Data Exploration' page, a scatter plot has been made to 
                                                 visualize the relationship between the first and second grades for students from two school.
-                                                You can see the different plots and values by choosing different schools."),
+                                                You can see the different plots and values by choosing different schools and 
+                                                save the scatter plot by clicking the download button at the bottom of this page"),
                                              h4("In the 'Unsupervised Learning' page, a PCA method is utilized to see 
                                                 the linear combinations of those variables. 
                                                 And you can see a biplot, a screeplot and 
@@ -118,9 +119,10 @@ ui <- dashboardPage(skin = "blue",
                                     
                                     # Show output
                                     mainPanel(
-                                      plotOutput("G12Plot"),
-                                      textOutput("info"),
-                                      tableOutput("table")
+                                      plotOutput("tab2_plot1"),
+                                      textOutput("tab2_text1"),
+                                      tableOutput("tab2_table1"),
+                                      downloadButton("download_tab2_plot1", "Save the Scatter Plot between G1 and G2")
                                     )
                                   )
                                 )),
@@ -265,7 +267,7 @@ ui <- dashboardPage(skin = "blue",
 ##################################### "Data Page" tab #####################################################
                       tabItem(tabName = "sub",
                               mainPanel(
-                                DT::dataTableOutput("Data Table"),
+                                
                                 downloadButton("downloadTable", "Download the Dataset of the Record of Math Grade")
                               ))
                       
