@@ -80,34 +80,35 @@ shinyServer(function(input, output, session) {
   )
   
 ########################################## PCA ###############################################
-  math.new <- reactive({
-    subset(mathdat, school == input$school, select = c(G1, G2, G3, absences, studytime))
+  newVar2 <- reactive({
+    
+     subset(mathdat, sex == input$sex,  select = c(G1, G2, G3, absences, studytime))
   })
   
   
-  output$scores <- renderPrint({
-    X <- math.new()
+  output$tab3_result1 <- renderPrint({
+    X <- newVar2()
     pca <- princomp(X)
     pca$scores
   })
   
-  output$screeplot <- renderPlot(
+  output$tab3_plot1 <- renderPlot(
     {
-      data <- math.new()
+      data <- newVar2()
       dat <- princomp(data)
       screeplot(dat, type = "lines")
     })
   
-  output$biplot <- renderPlot(
+  output$tab3_plot2 <- renderPlot(
     {
-      data <- math.new()
+      data <- newVar2()
       dat <- princomp(data)
       biplot(dat, xlabs = rep(".", nrow(data)), cex = 1.2)
     })
   
-  output$explain <- renderPlot(
+  output$tab3_plot3 <- renderPlot(
     {
-      data <- math.new()
+      data <- newVar2()
       dat <- princomp(data)
       par(mfrow = c(1, 2))
       plot(dat$sdev^2/sum(dat$sdev^2), xlab = "Principal Component", 

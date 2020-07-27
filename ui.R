@@ -108,7 +108,7 @@ ui <- dashboardPage(skin = "blue",
                                   sidebarLayout(
                                     sidebarPanel(
                                       h3("Select the Schools:"),
-                                      selectizeInput("school", "School", selected = "GP", 
+                                      selectizeInput("school", "School", selected = "F", 
                                                      choices = levels(as.factor(mathdat$school))),
                                       br(),
                                       sliderInput("size", "Size of Points on Graph",
@@ -134,19 +134,19 @@ ui <- dashboardPage(skin = "blue",
                                   # Sidebar with options for the two schools
                                   sidebarLayout(
                                     sidebarPanel(
-                                      h3("Select the Schools:"),
-                                      selectizeInput("school", "School", selected = "GP",
-                                                     choices = levels(as.factor(mathdat$school)))
+                                      h3("Select the Gender:"),
+                                      selectizeInput("sex", "Gender", selected = "F",
+                                                     choices = levels(as.factor(mathdat$sex)))
                                     ),
                                     mainPanel(
                                       tabsetPanel(
                                         
-                                        tabPanel("PC_Scores",verbatimTextOutput("scores")),
-                                        tabPanel("PC_Scree_PLot",plotOutput("screeplot")),
-                                        tabPanel("Bi_Plot",plotOutput("biplot")),
+                                        tabPanel("PC_Scores",verbatimTextOutput("tab3_result1")),
+                                        tabPanel("PC_Scree_PLot",plotOutput("tab3_plot1")),
+                                        tabPanel("Bi_Plot",plotOutput("tab3_plot2")),
                                         tabPanel("Proportion of Variance Explained vs 
                                Cum. Proportion of Variance Explained",
-                                                 plotOutput("explain"))
+                                                 plotOutput("tab3_plot3"))
                                         
                                       )))
                                 )),
