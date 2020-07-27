@@ -42,13 +42,14 @@ shinyServer(function(input, output, session) {
   
   
   # Create a scatter plot
-  output$tab2_plot1 <- renderPlot({
+  output$tab2_plot1 <- renderPlotly({
     newDat1 <- newVar1()
     
     g <- ggplot(newDat1, aes(x = G1, y = G2))
+    ggplotly(g)
     
-    if(input$sex){
-      g + geom_point(size = input$size, aes(col = sex))
+    if(input$address){
+      g + geom_point(size = input$size, aes(col = address))
     } else {
       g + geom_point(size = input$size)
     }
@@ -68,17 +69,7 @@ shinyServer(function(input, output, session) {
   output$tab2_table1 <- renderTable({
     newVar1()
   })
-  
-  # Download the plot 
-  output$download_tab2_plot1 <- downloadHandler(
-    filename = "Scatter Plot between G1 and G2.png",
-    content = function(file){
-      png(file)
-      tab2_plot1()
-      dev.off()
-    }
-  )
-  
+
 ########################################## PCA ###############################################
   newVar2 <- reactive({
     

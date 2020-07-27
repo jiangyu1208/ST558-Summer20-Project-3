@@ -108,21 +108,21 @@ ui <- dashboardPage(skin = "blue",
                                   sidebarLayout(
                                     sidebarPanel(
                                       h3("Select the Schools:"),
-                                      selectizeInput("school", "School", selected = "F", 
+                                      selectizeInput("school", "School", selected = "MS", 
                                                      choices = levels(as.factor(mathdat$school))),
                                       br(),
                                       sliderInput("size", "Size of Points on Graph",
                                                   min = 1, max = 10, value = 5, step = 1),
-                                      checkboxInput("sex", 
-                                                    h4("Color Code Gender Status", style = "color:blue;"))
+                                      checkboxInput("address", 
+                                                    h4("Color Code Address Status", style = "color:blue;"))
                                     ),
                                     
                                     # Show output
                                     mainPanel(
-                                      plotOutput("tab2_plot1"),
+                                      plotlyOutput("tab2_plot1"),
                                       textOutput("tab2_text1"),
-                                      tableOutput("tab2_table1"),
-                                      downloadButton("download_tab2_plot1", "Save the Scatter Plot between G1 and G2")
+                                      tableOutput("tab2_table1")
+                                      
                                     )
                                   )
                                 )),
