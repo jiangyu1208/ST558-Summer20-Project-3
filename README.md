@@ -10,7 +10,7 @@ ui.R and server.R are included.
 Before run this app, please install these libraries below and then check
 whether they have been installed completely by loading them,
 
-
+```
 install.packages(c("shiny", "shinydashboard", "shinythemes", "dplyr", "ggplot2", "data.table", "caret",  "rpart", "gridExtra", "lattice", "e1071", "randomForest", "plotly"))
 
 library(shiny)
