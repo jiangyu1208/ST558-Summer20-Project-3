@@ -113,7 +113,7 @@ ui <- dashboardPage(skin = "blue",
                                                      choices = levels(as.factor(mathdat$school))),
                                       br(),
                                       sliderInput("size", "Size of Points on Graph",
-                                                  min = 1, max = 10, value = 5, step = 1),
+                                                  min = 1, max = 10, value = 5, step = 1, animate = TRUE),
                                       checkboxInput("address", 
                                                     h4("Color Code Address Status", style = "color:blue;")),
                                       h4("Notice: You can click on this scatterplot and then zoom in or zoom out it.")
@@ -179,7 +179,7 @@ ui <- dashboardPage(skin = "blue",
                                     
                                   ),
                                   
-                                  # Show a tabset that includes mpg prediction, plot, summary, and table view of mtcars dataset
+                                  # Show a tabset that includes G3 prediction, plot, summary, and table view of math dataset
                                   mainPanel(
                                     tabsetPanel(
                                       tabPanel("Prediction",
