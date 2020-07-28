@@ -73,7 +73,7 @@ shinyServer(function(input, output, session) {
 ########################################## PCA ###############################################
   newVar2 <- reactive({
     
-     subset(mathdat, sex == input$sex,  select = c(G1, G2, G3, absences, studytime))
+    subset(mathdat, sex == input$sex,  select = c(G1, G2, G3, absences, studytime))
   })
   
   
@@ -107,7 +107,8 @@ shinyServer(function(input, output, session) {
       plot(cumsum(dat$sdev^2/sum(dat$sdev^2)), xlab = "Principal Component", 
            ylab = "Cum. Prop of Variance Explained", ylim = c(0, 1), type = 'b')
     })
-  
+ 
+     
 ################################################# MLR #####################################################  
   # Reactive expression to predict the final. This is 
   # called whenever the inputs change. The renderers defined 
