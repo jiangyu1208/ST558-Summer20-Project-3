@@ -279,9 +279,49 @@ shinyServer(function(input, output, session) {
 
 ###################################### Data Subset #########################################
   
-  output$downloadTable <- downloadHandler(
+  # display 10 rows initially
+  output$table.sub_1 <- DT::renderDataTable(
+    DT::datatable(mathdat, options = list(pageLength = 25))
+  )
+  
+  # -1 means no pagination; the 2nd element contains menu labels
+  output$table.sub_2 <- DT::renderDataTable(
+    DT::datatable(
+      mathdat, options = list(
+        lengthMenu = list(c(5, 15, -1), c('5', '15', 'All')),
+        pageLength = 15
+      )
+    )
+  )
+  
+  # Use paging = FALSE to disable pagination
+  output$table.sub_3 <- DT::renderDataTable(
+    DT::datatable(mathdat, options = list(paging = FALSE))
+  )
+  
+  # Turn off filtering (no searching boxes)
+  output$table.sub_4 <- DT::renderDataTable(
+    DT::datatable(mathdat, options = list(searching = FALSE))
+  )
+  
+  # Write literal JS code in JS()
+  output$table.sub_5 <- DT::renderDataTable(DT::datatable(
+    mathdat,
+    options = list(rowCallback = DT::JS(
+      'function(row, data) {
+        // Bold cells for those >= 5 in the first column
+        if (parseFloat(data[1]) >= 5.0)
+          $("td:eq(1)", row).css("font-weight", "bold");
+      }'
+    ))
+  ))
+  
+  # Download the datatable
+  output$downloadDatable <- downloadHandler(
     filename = function(){paste("Student Performance in Math.csv")},
     content = function(file){write.csv(mathdat, file, row.names = FALSE)}
   )
+  
+  
   
 })

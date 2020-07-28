@@ -192,7 +192,7 @@ ui <- dashboardPage(skin = "blue",
                                                  strong("lm")," is 
                  ", strong("used to fit linear model.")," 
                  Choose a",
-                                                 strong("model by AIC in a stepwise Algorithm"),
+                                                 strong("model by AIC in a stepwise Algorithm."),
                                                  "The obtained model has 2 (G1 and G2) independent variables.") ,
                                                h3("Predction Interval for the Final Grade"),
                                                
@@ -268,10 +268,16 @@ ui <- dashboardPage(skin = "blue",
                         
 ##################################### "Data Page" tab #####################################################
                         tabItem(tabName = "sub",
+                                navbarPage(
+                                  title = 'DataTable Options',
+                                  tabPanel('Display length',     DT::dataTableOutput('table.sub_1')),
+                                  tabPanel('Length menu',        DT::dataTableOutput('table.sub_2')),
+                                  tabPanel('No pagination',      DT::dataTableOutput('table.sub_3')),
+                                  tabPanel('No filtering',       DT::dataTableOutput('table.sub_4')),
+                                  tabPanel('Function callback',  DT::dataTableOutput('table.sub_5'))
+                                ),
                                 mainPanel(
-                                  
-                                  downloadButton("downloadTable", "Download the Dataset of the Record of Math Grade")
-                                ))
+                                  downloadButton("downloadDatable", "Download the Dataset")))
                         
                         
                       ),
