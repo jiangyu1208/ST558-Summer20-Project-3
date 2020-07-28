@@ -3,12 +3,9 @@ Project 3
 Yu Jiang
 7/27/2020
 
-This repo is for the final project for Summer20 ST558 and two R scripts,
-<<<<<<< HEAD
-ui.R and server.R are included.
+This repo is for the final project for Summer20 ST558 and two R scripts, ui.R and server.R, are included.
 
-Before run this app, please install these libraries below and then check
-whether they have been installed completely by loading them,
+Before running this app, please install these libraries below and then check whether they have been installed successfully by loading them,
 
 ```
 install.packages(c("shiny", "shinydashboard", "shinythemes", "dplyr", "ggplot2", "data.table", "caret",  "rpart", "gridExtra", "lattice", "e1071", "randomForest", "plotly"))
