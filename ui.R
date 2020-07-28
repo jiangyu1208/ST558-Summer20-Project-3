@@ -218,7 +218,8 @@ ui <- dashboardPage(skin = "blue",
                                       tabPanel("Diagnostic Plots" ,
                                                h2("Diagnostic plots provide checks for heteroscedasticity, 
                   normality, and influential observerations."),
-                                               plotOutput("myplot"))
+                                               plotOutput("myplot"),
+                                               downloadButton("download_plot", "Save the Plot"))
                                     )
                                   )
                                 )),

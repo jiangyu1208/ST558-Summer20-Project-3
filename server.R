@@ -148,6 +148,16 @@ shinyServer(function(input, output, session) {
     data.frame(mathdat)
   })
   
+  # Download the plot
+  output$download_plot <- downloadHandler(
+    filename = "Diagnostic Plots.png",
+    content = function(file){
+      png(file)
+      myplot()
+      dev.off()
+    }
+  )
+  
 ################################################ Ensemble models ######################################### 
   ## convert sona cars1 data variables to factor
   
