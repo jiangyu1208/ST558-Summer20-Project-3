@@ -10,9 +10,8 @@ ui.R and server.R are included.
 Before run this app, please install these libraries below and then check
 whether they have been installed completely by loading them,
 
-``` r
-# install.packages(c("shiny", "shinydashboard", "shinythemes", "dplyr", "ggplot2", "data.table",
-#                    "caret",  "rpart", "gridExtra", "lattice", "e1071", "randomForest", "plotly"))
+
+install.packages(c("shiny", "shinydashboard", "shinythemes", "dplyr", "ggplot2", "data.table", "caret",  "rpart", "gridExtra", "lattice", "e1071", "randomForest", "plotly"))
 
 library(shiny)
 library(shinydashboard)
@@ -31,9 +30,5 @@ library(plotly)
 
 After all the libraries have been loaded, this shiny APP can be run
 directly from gitHub using RStudio by running
-**shiny::runGitHub(“ST558-Summer20-Project-3”, “jiangyu1208”)** in the
-console.
-=======
-ui.R and server.R are inclueded. This shiny APP can be run directly from gitHub using RStudio by running 
-**shiny::runGitHub("ST558-Summer20-Project-3", "jiangyu1208")** in the console.
->>>>>>> 5e6ef6287ae377a23108d97ff1f95bcba7f208c3
+**shiny::runGitHub(“ST558-Summer20-Project-3”, “jiangyu1208”)** in the console.
+
