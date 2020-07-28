@@ -30,5 +30,5 @@ library(plotly)
 
 After all the libraries have been loaded, this shiny APP can be run
 directly from gitHub using RStudio by running
-**shiny::runGitHub(“ST558-Summer20-Project-3”, “jiangyu1208”)** in the console.
+**shiny::runGitHub("ST558-Summer20-Project-3", "jiangyu1208")** in the console.
 
