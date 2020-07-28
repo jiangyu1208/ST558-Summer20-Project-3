@@ -4,6 +4,7 @@ Yu Jiang
 7/27/2020
 
 This repo is for the final project for Summer20 ST558 and two R scripts,
+<<<<<<< HEAD
 ui.R and server.R are included.
 
 Before run this app, please install these libraries below and then check
@@ -32,3 +33,7 @@ After all the libraries have been loaded, this shiny APP can be run
 directly from gitHub using RStudio by running
 **shiny::runGitHub(“ST558-Summer20-Project-3”, “jiangyu1208”)** in the
 console.
+=======
+ui.R and server.R are inclueded. This shiny APP can be run directly from gitHub using RStudio by running 
+**shiny::runGitHub("ST558-Summer20-Project-3", "jiangyu1208")** in the console.
+>>>>>>> 5e6ef6287ae377a23108d97ff1f95bcba7f208c3
